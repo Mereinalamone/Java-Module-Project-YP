@@ -14,6 +14,7 @@ public class DivisionCheck {
 
     public static void divCheck (int numberPeople) {
 
+        Scanner scanner = new Scanner(System.in);
         int i = 0;
         String name;
         float price;
@@ -23,35 +24,26 @@ public class DivisionCheck {
         while (true) {
             i = i + 1;
             while(true) {
-                try{
                     System.out.printf("Введите название товара №%d: ", i);
-                    Scanner scanner = new Scanner(System.in);
                     name = scanner.next();
                     break;
                 }
-                catch(Exception e) {
-                    System.out.println("Ошибка ввода. Возможно введены недопустимые символы.");
-                }
-            }
+
             while(true) {
-                try{
-                    System.out.printf("Введите цену товара №%d: ", i);
-                    Scanner scanner = new Scanner(System.in);
+                System.out.printf("Введите стоимоть товара №%d: ", i);
+                if (scanner.hasNextFloat()){
                     price = scanner.nextFloat();
                     if (price > 0) {
                         break;
                     }
-                    else {System.out.println("Ошибка ввода. Цена не может быть отрицательной или нулевой.");}
-                }
-                catch(Exception e) {
-                    System.out.println("Ошибка ввода. Необходимо ввести число.");
-                }
+                } else scanner.next();
+                System.out.println("Ошибка ввода. Необходимо вводить числовое значение.\n" + "Цена не может быть отрицательной или нулевой.");
             }
+
             productList.add(new Product(name, price));
             sum = sum + price;
-            System.out.println("Товар добавлен в список. Продолжаем? ");
+            System.out.println("Товар добавлен в список. Продолжаем?");
             System.out.println("Для продолжения введите любой символ, для завершения введите \"завершить\".");
-            Scanner scanner = new Scanner(System.in);
             String reply = scanner.next();
             if (reply.equalsIgnoreCase("завершить"))
             {break;}

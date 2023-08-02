@@ -2,26 +2,22 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
-        System.out.println("Приветствую пользователь!");
-        System.out.println("На скольких человек разделить счёт? ");
+        Scanner scanner = new Scanner(System.in);
         int numberPeople;
+
+        System.out.print("Приветствую пользователь!" + "\n" + "На сколько человек разделить счёт?");
+
         while (true) {
-            try {
-                Scanner scanner = new Scanner(System.in);
+            if (scanner.hasNextInt()){
                 numberPeople = scanner.nextInt();
                 if (numberPeople > 1) {
-                    System.out.println("Замечательно, колличество гостей - " + numberPeople + "!");
-                    System.out.println("А теперь займёмся вашим меню!");
+                    System.out.println("\nЗамечательно, колличество гостей - " + numberPeople + "!\n" + "А теперь займёмся вашим меню!\n");
                     break;
-                } else if (numberPeople == 1) {
-                    System.out.println("Значение некорректное. В этом случае нет смысла ничего считать и делить.");
-                } else {
-                    System.out.println("Значение некорректное. В этом случае нет смысла ничего считать и делить.");
                 }
-            } catch (Exception e) {
-                System.out.println("Значение некорректное. Необходимо ввести целое число.");
-            }
+            } else
+                scanner.next();
+            System.out.println("Значение некорректное.\n" + "Нельзя вводить спец символы или буквы.");
+            System.out.println("Колличество гостей не может быть равно 1 или 0, а так же не может быть отрицательным.\n");
         }
         DivisionCheck.divCheck(numberPeople);
     }
